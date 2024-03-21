@@ -35,6 +35,7 @@ RUN bash Miniconda3-py39_4.10.3-Linux-x86_64.sh -b -p /opt/miniconda3 \
 #
 RUN pip3 install warcio
 RUN pip3 install mamba
+RUN pip3 install google-cloud-logging
 # Use mamba to install packages quickly.
 RUN mamba install \
       beautifulsoup4 \
