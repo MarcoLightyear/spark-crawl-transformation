@@ -34,7 +34,7 @@ verticesSchema = StructType([
 
 edgesSchema = StructType([
     StructField("id", IntegerType(), True),
-    StructField("targetURIId", StringType(), True),
+    StructField("targetURIId", IntegerType(), True),
     StructField("edge", StringType(), True)
 ])
 
@@ -78,7 +78,7 @@ with open(SparkFiles.get('input_warc_paths.csv'), mode='r') as file:
             vertices, verticesSchema).write \
             .format('bigquery') \
             .option("writeMethod", "direct") \
-            .option('table', 'data-analysis-upmx-holding:clean_common_crawl_upmx.vertices_v3') \
+            .option('table', 'data-analysis-upmx-holding:clean_common_crawl_upmx.vertices_limited') \
             .mode('append') \
             .save()
 
@@ -86,7 +86,7 @@ with open(SparkFiles.get('input_warc_paths.csv'), mode='r') as file:
             edges, edgesSchema).write \
             .format('bigquery') \
             .option("writeMethod", "direct") \
-            .option('table', 'data-analysis-upmx-holding:clean_common_crawl_upmx.edges_v3') \
+            .option('table', 'data-analysis-upmx-holding:clean_common_crawl_upmx.edges_limited') \
             .mode('append') \
             .save()
 
